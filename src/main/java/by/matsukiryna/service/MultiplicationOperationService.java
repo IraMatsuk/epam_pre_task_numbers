@@ -1,15 +1,12 @@
 package by.matsukiryna.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.matsukiryna.factory.CustNumber;
+import by.matsukiryna.factory.NumbersFactory;
 
 public class MultiplicationOperationService {
-    static Logger logger = LogManager.getLogger();
-    private double result;
-
-    public double multiply(double firstNumber, double secondNumber) {
-        result = firstNumber * secondNumber;
-        logger.info(result);
-        return result;
+    public CustNumber mult(CustNumber firstNumber, CustNumber secondNumber) {
+        CustNumber tmp = NumbersFactory.createNumber(firstNumber.toString());
+        tmp.mult(secondNumber);
+        return tmp;
     }
 }

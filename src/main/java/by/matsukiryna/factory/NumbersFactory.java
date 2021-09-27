@@ -5,16 +5,12 @@ import by.matsukiryna.validation.Validator;
 public class NumbersFactory {
     public static CustNumber createNumber(String numberStr) {
         Validator validator = new Validator();
-        if(!validator.numberValidate(numberStr)){
-            throw new IllegalArgumentException("Unknown number format");
-        }
-
-        double doubleNumber = Double.parseDouble(numberStr);
-        if (doubleNumber % 1 != 0) {
-            return new DoubleCustNumber(doubleNumber);
+        if (validator.isInt(numberStr)) {
+            return new IntCustNumber(Integer.parseInt(numberStr));
+        } else if (validator.isDouble(numberStr)){
+            return new DoubleCustNumber(Double.parseDouble(numberStr));
         } else {
-            int intNumber = Integer.parseInt(numberStr);
-            return new IntCustNumber(intNumber);
+            throw new IllegalArgumentException("Unknown data format");
         }
     }
 }

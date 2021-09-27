@@ -36,7 +36,12 @@ public class DoubleCustNumber implements CustNumber {
     @Override
     public void div(CustNumber custNumber) {
         DoubleCustNumber doubleCustNumber = (DoubleCustNumber) custNumber;
-        number /= doubleCustNumber.getNumber();
+        double result = number / doubleCustNumber.getNumber();
+        if ((result == Double.POSITIVE_INFINITY)
+                || (result == Double.NEGATIVE_INFINITY)) {
+            throw new ArithmeticException("division by zero");
+        }
+        number = result;
     }
 
     @Override

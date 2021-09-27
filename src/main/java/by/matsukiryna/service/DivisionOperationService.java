@@ -1,22 +1,14 @@
 package by.matsukiryna.service;
 
+import by.matsukiryna.factory.CustNumber;
+import by.matsukiryna.factory.NumbersFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class DivisionOperationService {
-    static Logger logger = LogManager.getLogger();
-    private double result;
-
-    public double divide(double firstNumber, double secondNumber) {
-        try {
-            result = firstNumber / secondNumber;
-            if ((result == Double.POSITIVE_INFINITY)
-                    || (result == Double.NEGATIVE_INFINITY)) {
-                throw new ArithmeticException();
-            }
-        } catch (ArithmeticException e) {
-            logger.error(e);
-        }
-        return result;
+    public CustNumber divide(CustNumber firstNumber, CustNumber secondNumber) {
+        CustNumber tmp = NumbersFactory.createNumber(firstNumber.toString());
+        tmp.div(secondNumber);
+        return tmp;
     }
 }
