@@ -25,7 +25,8 @@ public class NumbersApplicationMain {
     static Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) throws FileNotFoundException {
-        Path path = Paths.get("file.txt");
+        final String FILE_PATH = "file.txt";
+        Path path = Paths.get(FILE_PATH);
         String numberStr = "";
         try (Stream<String> streamLines = Files.lines(path)) {
             numberStr = streamLines.collect(Collectors.joining());
