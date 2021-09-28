@@ -1,29 +1,23 @@
 package by.matsukiryna.service;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import by.matsukiryna.factory.CustNumber;
+import by.matsukiryna.factory.DoubleCustNumber;
+import by.matsukiryna.factory.NumbersFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DivisionOperationServiceTest {
-    DivisionOperationService divisionOperationService = new DivisionOperationService();
-
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
-    void divide() {
-        double actual = divisionOperationService.divide(10.0, 5.0);
-        double expected = 2.0;
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    @DisplayName("Division by zero should throw an ArithmeticException")
-    void divideByZero() {
-        Exception exception = assertThrows(ArithmeticException.class, () -> divisionOperationService.divide(10.0, 0.0));
-        assertEquals("/ by zero", exception.getMessage());
+    void divisionCustomNumbers() {
+        double expected = 3.0;
+        double firstNumber = 30.0;
+        double secondNumber = 10.0;
+        CustNumber custNumber = NumbersFactory.createNumber(String.valueOf(firstNumber));
+        CustNumber custNumber2 = NumbersFactory.createNumber(String.valueOf(secondNumber));
+        DoubleCustNumber doubleCustNumber = (DoubleCustNumber) custNumber;
+        DoubleCustNumber doubleCustNumber2 = (DoubleCustNumber) custNumber2;
+        doubleCustNumber.div(doubleCustNumber2);
+        assertEquals(doubleCustNumber.getNumber(), expected);
     }
 }
